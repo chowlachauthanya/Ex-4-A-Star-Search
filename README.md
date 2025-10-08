@@ -1,6 +1,6 @@
 <h1>ExpNo 4 : Implement A* search algorithm for a Graph</h1> 
-<h3>Name:       </h3>
-<h3>Register Number:           </h3>
+<h3>Name:Chowla Chaithanya
+<h3>Register Number:2305002004           </h3>
 <H3>Aim:</H3>
 <p>To ImplementA * Search algorithm for a Graph using Python 3.</p>
 <H3>Algorithm:</H3>
@@ -50,105 +50,58 @@
 
 ## PROGRAM
 ```python
+def a_star(start, goal, graph, h):
+    open_list = [start]
+    g = {start: 0}
+    parent = {start: None}
 
-from collections import defaultdict
-H_dist ={}
-def aStarAlgo(start_node, stop_node):
-    open_set = set(start_node)
-    closed_set = set()
-    g = {}  
-    parents = {}   
-    g[start_node] = 0
-    parents[start_node] = start_node
-    while len(open_set) > 0:
-        n = None
-        for v in open_set:
-            if n == None or g[v] + heuristic(v) < g[n] + heuristic(n):
-                n = v
-        if n == stop_node or Graph_nodes[n] == None:
-            pass
-        else:
-            for (m, weight) in get_neighbors(n):
-                if m not in open_set and m not in closed_set:
-                    open_set.add(m)
-                    parents[m] = n
-                    g[m] = g[n] + weight
-                else:
-                    if g[m] > g[n] + weight:
-                        g[m] = g[n] + weight
-                        parents[m] = n
-                        if m in closed_set:
-                            closed_set.remove(m)
-                            open_set.add(m)
-        if n == None:
-            print("Path does not exist!")
-            return None
-        if n == stop_node:
+    while open_list:
+        n = min(open_list, key=lambda x: g[x] + h[x])
+        if n == goal:
             path = []
-            while parents[n] != n:
+            while n:
                 path.append(n)
-                n = parents[n]
-            path.append(start_node)
-            path.reverse()
-            print('Path found: {}'.format(path))
-            return path
-        open_set.remove(n)
-        closed_set.add(n)
-    print('Path does not exist!')
+                n = parent[n]
+            return path[::-1]
+
+        open_list.remove(n)
+        for m, cost in graph.get(n, []):
+            if m not in g or g[m] > g[n] + cost:
+                g[m] = g[n] + cost
+                parent[m] = n
+                if m not in open_list:
+                    open_list.append(m)
     return None
-def get_neighbors(v):
-    if v in Graph_nodes:
-        return Graph_nodes[v]
-    else:
-        return None
-def heuristic(n):
-    return H_dist[n]
-graph = defaultdict(list)
-n,e = map(int,input().split())
-for i in range(e):
-    u,v,cost = map(str,input().split())
-    t=(v,int(cost))
-    graph[u].append(t)
-    t1=(u,int(cost))
-    graph[v].append(t1)
-for i in range(n):
-    node,h=map(str,input().split())
-    H_dist[node]=int(h)
-Graph_nodes=graph
-start=input()
-goal=input()
-aStarAlgo(start, goal)
+
+#User Input for graph
+graph = {}
+h = {}
+
+nodes = input("Enter all nodes separated by space: ").split()
+
+for node in nodes:
+    h[node] = int(input(f"Heuristic value for {node}: "))
+    graph[node] = []
+    n = int(input(f"How many neighbors does {node} have? "))
+    for _ in range(n):
+        neighbor = input("  Enter neighbor node: ")
+        cost = int(input(f"  Enter cost to reach {neighbor}: "))
+        graph[node].append((neighbor, cost))
+
+start = input("Enter start node: ")
+goal = input("Enter goal node: ")
+
+path = a_star(start, goal, graph, h)
+print("Path found:", path)
 ```
 
 SAMPLE GRAPH I
-![277151990-b1377c3f-011a-4c0f-a843-516842ae056a](https://github.com/user-attachments/assets/bedfaca4-a69a-468a-957d-a3def3f28836)
+<img width="973" height="625" alt="image" src="https://github.com/user-attachments/assets/b0469711-51c4-41c5-9a75-039e5d3a41d4" />
+
 
 SAMPLE INPUT
-10 14 <br>
-A B 6 <br>
-A F 3 <br>
-B D 2 <br>
-B C 3 <br>
-C D 1 <br>
-C E 5 <br>
-D E 8 <br>
-E I 5 <br>
-E J 5 <br>
-F G 1 <br>
-G I 3 <br>
-I J 3 <br>
-F H 7 <br>
-I H 2 <br>
-A 10 <br>
-B 8 <br>
-C 5 <br>
-D 7 <br>
-E 3 <br>
-F 6 <br>
-G 5 <br>
-H 3 <br>
-I 1 <br>
-J 0 <br>
+<img width="798" height="743" alt="image" src="https://github.com/user-attachments/assets/81feb7fe-6a5b-448d-89ea-e454efc5e045" />
+
 <hr>
 Sample Output
 
