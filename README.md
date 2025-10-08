@@ -95,48 +95,17 @@ path = a_star(start, goal, graph, h)
 print("Path found:", path)
 ```
 
-SAMPLE GRAPH I
+SAMPLE GRAPH 
 <img width="973" height="625" alt="image" src="https://github.com/user-attachments/assets/b0469711-51c4-41c5-9a75-039e5d3a41d4" />
 
 
 SAMPLE INPUT
 <img width="798" height="743" alt="image" src="https://github.com/user-attachments/assets/81feb7fe-6a5b-448d-89ea-e454efc5e045" />
-
-<hr>
-Sample Output
-
-![435098048-ac8a5725-93b0-44e9-bba7-8a32d7ee80ee](https://github.com/user-attachments/assets/23a66732-b6f5-4b74-8eae-e3e21b0f6814)
-
-
-
-
-<hr>
-<h2>Sample Graph II</h2>
-<hr>
-
-![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/acbb09cb-ed39-48e5-a59b-2f8d61b978a3)
-
-
-<hr>
-<h2>Sample Input</h2>
-<hr>
-6 6 <br>
-A B 2 <br>
-B C 1 <br>
-A E 3 <br>
-B G 9 <br>
-E D 6 <br>
-D G 1 <br>
-A 11 <br>
-B 6 <br>
-C 99 <br>
-E 7 <br>
-D 1 <br>
-G 0 <br>
-<hr>
-
 SAMPLE OUTPUT
+<img width="403" height="99" alt="image" src="https://github.com/user-attachments/assets/6c95583f-9cab-4427-9982-11c568d5b7e0" />
 
-![435098114-175123a9-8519-4ec4-b3f6-1151b674380d](https://github.com/user-attachments/assets/91f98b2e-c195-45de-9dbf-19bc17dbfb8f)
+
+
 
 ## RESULT
+Thus, the given program was implemented and executed successfully.
